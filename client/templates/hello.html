@@ -1,0 +1,32 @@
+<head>
+  <title>hello</title>
+</head>
+
+<body>
+</body>
+
+<template name="layout">
+    <h4>State: </h4>
+    <ul>
+        <li> User Status: {{userStatus}} </li>
+        <li> Template Reload: {{templateReload}} </li>
+        <li> Blacklisted Selector on page?: {{blacklistSelectorStatus}}</li>
+        <li> Update Pending: {{hasRetry}} </li>
+    </ul>
+    <br>
+    {{>yield}}
+</template>
+
+<template name="hello">
+    <form></form>
+  <button>Fuck Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
+    <button id="no-update-page">Go To No Update Page</button>
+</template>
+
+<template name="noUpdate">
+    <h1> Anything on this page should not update!!!!!</h1>
+    <button id="update-page">
+        To Update Page
+    </button>
+</template>
