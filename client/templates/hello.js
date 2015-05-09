@@ -1,43 +1,48 @@
 var idleStates = ['Active', 'Idle', 'Inactive'];
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
-    SmartReload.configure({
-        reload: {
-            firstStart: true,
-            router: true,
-            idle: true,
-            selector: false
-        },
-        idleTracker: {
-            detectorMs: 1000,
-            idleThreshold: 10,
-            inactiveThreshold: 20,
-            disconnectInactive: false
-        },
-        debug: true,
-        splashScreen: true
-    });
-    SmartReload.routes = {
-        noUpdate : true
-    };
-
-  Template.hello.helpers({
-    counter: function () {
-      return Session.get('counter');
-    }
-  });
-
-  Template.hello.events({
-    'click button': function () {
-      // increment the counter when button is clicked
-      Session.set('counter', Session.get('counter') + 1);
+SmartReload.configure({
+    reload: {
+        firstStart: true,
+        router: true,
+        idle: true,
+        selector: true
     },
-      'click #no-update-page': function() {
-          Router.go('noUpdate');
-      }
-  });
+    idleTracker: {
+        detectorMs: 1000,
+        idleThreshold: 4,
+        inactiveThreshold: 20,
+        disconnectInactive: false
+    },
+    debug: true,
+    splashScreen: true
+});
+
+SmartReload.selectors = {
+    form: {
+        selector: 'form',
+        enabled: false
+    }
+};
+
+SmartReload.routes = {
+    noUpdate : true
+};
+
+Template.hello.events({
+    'click #no-update-page': function() {
+        Router.go('noUpdate');
+    },
+    'click #no-update-selector-page': function() {
+        Router.go('noUpdateSelector');
+    }
+});
+
 Template.noUpdate.events({
+    'click #update-page': function() {
+        Router.go('/');
+    }
+});
+
+Template.noUpdateSelector.events({
     'click #update-page': function() {
         Router.go('/');
     }

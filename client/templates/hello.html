@@ -18,15 +18,21 @@
 </template>
 
 <template name="hello">
-    <form></form>
-  <button>Fuck Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
-    <button id="no-update-page">Go To No Update Page</button>
+    <button id="no-update-page">Go To No Update Router Page</button>
+    <button id="no-update-selector-page">Go To No Update Selector Page</button>
 </template>
 
 <template name="noUpdate">
-    <h1> Anything on this page should not update!!!!!</h1>
+    <h1> Anything on this page should not update!!!!! (if the router blacklisting is set to true)</h1>
     <button id="update-page">
-        To Update Page
+        To Main Page
+    </button>
+</template>
+
+<template name="noUpdateSelector">
+    <h1> Anything on this page should not update!!!!! (if the selector blacklisting is set to true for forms)</h1>
+    <form></form> <!-- this form selector will be caught and will stop reload if blacklsiting is turned on -->
+    <button id="update-page">
+        To Main Page
     </button>
 </template>
